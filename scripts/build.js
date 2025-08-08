@@ -28,10 +28,10 @@ function copyDir(src, dest) {
 // Copy landing page and assets to dist folder
 console.log('Copying landing page and assets to dist folder...');
 
-// Copy landing page
-if (fs.existsSync('landing.html')) {
-  fs.copyFileSync('landing.html', 'dist/landing.html');
-  console.log('✓ Copied landing.html');
+// Copy landing page from public folder (clean version without Firebase)
+if (fs.existsSync('public/landing.html')) {
+  fs.copyFileSync('public/landing.html', 'dist/landing.html');
+  console.log('✓ Copied landing.html from public folder');
 }
 
 // Copy assets folder
