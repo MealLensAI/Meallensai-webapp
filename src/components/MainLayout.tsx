@@ -3,7 +3,7 @@
 import { useNavigate, useLocation } from "react-router-dom"
 import { Button } from "@/components/ui/button"
 import { useToast } from "@/hooks/use-toast"
-import { LogOut, Home, Camera, History, CalendarDays, User } from "lucide-react"
+import { LogOut } from "lucide-react"
 import { useAuth } from "@/lib/utils"
 import Navbar from "./Navbar"
 
@@ -20,7 +20,7 @@ const MainLayout = ({ children }: { children: React.ReactNode }) => {
         title: "Signed out successfully",
         description: "You have been logged out of your account.",
       })
-      navigate("/login")
+      navigate("/")
     } catch (error: any) {
       toast({
         title: "Error",
@@ -29,15 +29,6 @@ const MainLayout = ({ children }: { children: React.ReactNode }) => {
       })
     }
   }
-
-  const isActive = (path: string) => location.pathname === path
-
-  const navItems = [
-    { icon: CalendarDays, label: "Meal Planner", path: "/" },
-    { icon: Home, label: "AI Kitchen", path: "/ai-kitchen" },
-    { icon: Camera, label: "Detect Food", path: "/detected" },
-    { icon: History, label: "History", path: "/history" },
-  ]
 
   if (!isAuthenticated) {
     return null // Don't render layout if not authenticated

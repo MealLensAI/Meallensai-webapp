@@ -13,6 +13,8 @@ const ProtectedRoute: React.FC<ProtectedRouteProps> = ({ children }) => {
   const { isAuthenticated, loading } = useAuth()
   const location = useLocation()
 
+  console.log('ProtectedRoute state:', { isAuthenticated, loading, pathname: location.pathname })
+
   if (loading) {
     return (
       <div className="min-h-screen bg-gradient-to-br from-orange-50 to-red-50 flex items-center justify-center">
@@ -31,8 +33,8 @@ const ProtectedRoute: React.FC<ProtectedRouteProps> = ({ children }) => {
   }
 
   if (!isAuthenticated) {
-    // Redirect to login with the current location as the intended destination
-    return <Navigate to="/login" state={{ from: location }} replace />
+    // Redirect to landing page instead of login
+    return <Navigate to="/" replace />
   }
 
   return <>{children}</>

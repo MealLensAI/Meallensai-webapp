@@ -27,7 +27,7 @@ const Navbar = () => {
         title: "Signed out successfully",
         description: "You have been logged out of your account.",
       })
-      navigate("/login")
+      navigate("/")
     } catch (error: any) {
       toast({
         title: "Error",
@@ -69,7 +69,7 @@ const Navbar = () => {
           <div className="hidden md:flex items-center space-x-8">
             <Button
               variant="ghost"
-              onClick={() => navigate("/")}
+              onClick={() => navigate("/app")}
               className="text-gray-700 hover:text-orange-500 hover:bg-orange-50 transition-colors"
             >
               Meal Planner
@@ -121,10 +121,6 @@ const Navbar = () => {
                   </div>
                 </DropdownMenuLabel>
                 <DropdownMenuSeparator />
-                <DropdownMenuItem onClick={() => navigate("/profile")}>
-                  <User className="mr-2 h-4 w-4" />
-                  <span>Profile</span>
-                </DropdownMenuItem>
                 <DropdownMenuItem onClick={() => navigate("/settings")}>
                   <Settings className="mr-2 h-4 w-4" />
                   <span>Settings</span>
@@ -148,11 +144,11 @@ const Navbar = () => {
           <div className="grid grid-cols-4 gap-1">
             <Button
               variant="ghost"
-              onClick={() => navigate("/")}
+              onClick={() => navigate("/app")}
               className="flex flex-col items-center justify-center h-16 text-xs space-y-1 text-gray-700 hover:text-orange-500 hover:bg-orange-50"
             >
               <Utensils className="h-5 w-5" />
-              <span>AI Kitchen</span>
+              <span>Meal Planner</span>
             </Button>
             <Button
               variant="ghost"
@@ -172,11 +168,11 @@ const Navbar = () => {
             </Button>
             <Button
               variant="ghost"
-              onClick={() => navigate("/planner")}
+              onClick={() => navigate("/settings")}
               className="flex flex-col items-center justify-center h-16 text-xs space-y-1 text-gray-700 hover:text-orange-500 hover:bg-orange-50"
             >
               <Settings className="h-5 w-5" />
-              <span>Planner</span>
+              <span>Settings</span>
             </Button>
           </div>
         </div>

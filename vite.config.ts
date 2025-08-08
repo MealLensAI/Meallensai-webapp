@@ -15,4 +15,12 @@ export default defineConfig({
       '/api': 'http://127.0.0.1:5000',
     },
   },
+  build: {
+    outDir: 'dist',
+    rollupOptions: {
+      input: {
+        main: path.resolve(__dirname, 'index.html'),
+      },
+    },
+  },
 })
