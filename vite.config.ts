@@ -12,8 +12,11 @@ export default defineConfig({
   },
   server: {
     proxy: {
-      '/api': 'https://new-backend-08j8.onrender.com',
-
+      '/api': {
+        target: 'https://new-backend-08j8.onrender.com',
+        changeOrigin: true,
+        secure: true
+      }
     },
   },
   build: {

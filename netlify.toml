@@ -5,7 +5,7 @@
 # Proxy API calls to the backend (must be first and most specific)
 [[redirects]]
   from = "/api/*"
-  to = "https://new-backend-08j8.onrender.com/:splat"
+  to = "https://new-backend-08j8.onrender.com/api/:splat"
   status = 200
   force = true
   headers = {X-From = "Netlify"}

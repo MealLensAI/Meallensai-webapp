@@ -1,6 +1,6 @@
 import { useAuth } from './utils'
 
-// API base URL - different for development and production
+// API base URL - uses /api for both dev (proxy) and production (Netlify redirect)
 const API_BASE_URL = '/api'
 // Custom error class for API errors
 export class APIError extends Error {
