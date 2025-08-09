@@ -1,7 +1,9 @@
 import { useAuth } from './utils'
 
-// API base URL - uses proxy for all requests (both development via Vite and production via Netlify)
-const API_BASE_URL = '/api'
+// API base URL - different for development and production
+const API_BASE_URL = import.meta.env.MODE === 'development'
+  ? '/api' // Use Vite proxy in development
+  : 'https://new-backend-08j8.onrender.com' // Direct backend URL in production
 
 // Custom error class for API errors
 export class APIError extends Error {
@@ -208,32 +210,8 @@ class APIService {
 
   // Auth-specific methods
   async login(credentials: { email: string; password: string }): Promise<APIResponse> {
-    try {
-      // In production, go directly to the backend. In development, use the proxy.
-      return this.post('/login', credentials, { skipAuth: true })
-    } catch (error) {
-      console.log('Primary backend login failed, trying fallback backend...')
-      // Try fallback backend
-      try {
-        const response = await fetch('https://ai-utu2.onrender.com/login', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify(credentials),
-        })
-
-        if (!response.ok) {
-          const errorData = await response.text()
-          throw new APIError(`Login failed: ${errorData}`, response.status)
-        }
-
-        return response.json()
-      } catch (fallbackError) {
-        console.error('Both login endpoints failed:', error, fallbackError)
-        throw new APIError('Login service is currently unavailable. Please try again later.', 503)
-      }
-    }
+    console.log(`Attempting login with backend: ${API_BASE_URL}/login`)
+    return this.post('/login', credentials, { skipAuth: true })
   }
 
   async register(userData: { email: string; password: string; name?: string }): Promise<APIResponse> {
