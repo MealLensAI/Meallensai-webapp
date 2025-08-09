@@ -2,10 +2,12 @@
   command = "npm run build"
   publish = "dist"
 
+# Proxy API calls to the backend
 [[redirects]]
-  from = "/*"
-  to = "/index.html"
+  from = "/api/*"
+  to = "https://new-backend-08j8.onrender.com/:splat"
   status = 200
+  force = true
 
 # Handle the landing page
 [[redirects]]
@@ -13,7 +15,7 @@
   to = "/landing.html"
   status = 200
 
-# Handle React app routes
+# Handle specific React app routes
 [[redirects]]
   from = "/app/*"
   to = "/index.html"
@@ -61,5 +63,11 @@
 
 [[redirects]]
   from = "/settings"
+  to = "/index.html"
+  status = 200
+
+# Catch-all for other React routes (must come last)
+[[redirects]]
+  from = "/*"
   to = "/index.html"
   status = 200 
