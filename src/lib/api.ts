@@ -3,7 +3,7 @@ import { useAuth } from './utils'
 // API base URL - different for development and production
 const API_BASE_URL = import.meta.env.MODE === 'development'
   ? '/api' // Use Vite proxy in development
-  : 'https://new-backend-08j8.onrender.com' // Direct backend URL in production
+  : '/.netlify/functions/api' // Use Netlify Functions proxy in production
 
 // Custom error class for API errors
 export class APIError extends Error {
